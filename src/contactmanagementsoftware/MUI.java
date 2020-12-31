@@ -10,7 +10,6 @@ import javax.swing.table.DefaultTableModel;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 /**
  * @author ritz619
@@ -22,17 +21,10 @@ public class MUI extends javax.swing.JFrame implements AcquaintanceIterator {
      */
     private AcquaintanceFactory Acquaintancesfactory;
     private static ArrayList<ArrayList<Acquaintances>> acquaintances;
-    private static ArrayList<Acquaintances> personalFriends;
-    private static ArrayList<Acquaintances> relatives;
-    private static ArrayList<Acquaintances> professionalFriends;
-    private static ArrayList<Acquaintances> casualAcquaintances;
-    private ArrayList<ArrayList<Acquaintances>> temp;
     private int categoryIndex;
     private int ArrayListIndex;
-    private Scanner reader;
     private boolean addOrEditFlag;
     private boolean detailsFlag;
-    private String op;
     private String searchString;
     private static MUI manager;
 
@@ -42,12 +34,11 @@ public class MUI extends javax.swing.JFrame implements AcquaintanceIterator {
         DefaultTableModel model = new DefaultTableModel(null, columnNames);
         jXTable1.setModel(model);
         setUpTableData();
-        reader = new Scanner(System.in);
         acquaintances = new ArrayList<>();
-        personalFriends = new ArrayList<>();
-        relatives = new ArrayList<>();
-        professionalFriends = new ArrayList<>();
-        casualAcquaintances = new ArrayList<>();
+        ArrayList<Acquaintances> personalFriends = new ArrayList<>();
+        ArrayList<Acquaintances> relatives = new ArrayList<>();
+        ArrayList<Acquaintances> professionalFriends = new ArrayList<>();
+        ArrayList<Acquaintances> casualAcquaintances = new ArrayList<>();
         acquaintances.add(personalFriends);
         acquaintances.add(relatives);
         acquaintances.add(professionalFriends);
@@ -81,6 +72,7 @@ public class MUI extends javax.swing.JFrame implements AcquaintanceIterator {
             two.setEditable(true);
             three.setEditable(true);
         }
+        String op;
         if (addOrEditFlag) {
             op = "Add";
             jButton10.setText("Add");
@@ -787,6 +779,7 @@ public class MUI extends javax.swing.JFrame implements AcquaintanceIterator {
         JFileChooser fileChooser = new JFileChooser();
         fileChooser.setCurrentDirectory(new File(System.getProperty("user.dir")));
         int result = fileChooser.showOpenDialog(this);
+        ArrayList<ArrayList<Acquaintances>> temp;
         if (result == JFileChooser.APPROVE_OPTION) {
             File selectedFile = fileChooser.getSelectedFile();
             try {
@@ -805,7 +798,7 @@ public class MUI extends javax.swing.JFrame implements AcquaintanceIterator {
                 }
             }
         } catch (Exception e) {
-
+            e.printStackTrace();
         }
         this.setUpTableData();
     }//GEN-LAST:event_jButton7ActionPerformed
@@ -865,7 +858,7 @@ public class MUI extends javax.swing.JFrame implements AcquaintanceIterator {
             return;
         }
         String Mobile = mobile.getText();
-        if (!MobileNoChecker.MobileNoChecker(Mobile)) {
+        if (!MobileNoChecker.validateMobileNo(Mobile)) {
             JOptionPane.showMessageDialog(this, "Enter a valid mobile number (6-15 digits)");
             return;
         }
@@ -888,7 +881,7 @@ public class MUI extends javax.swing.JFrame implements AcquaintanceIterator {
                     return;
                 }
                 Three = three.getText();
-                if (!DateChecker.validDate(Three)) {
+                if (!DateChecker.validateDate(Three)) {
                     JOptionPane.showMessageDialog(this, "Enter a valid date");
                     return;
                 }
@@ -920,7 +913,7 @@ public class MUI extends javax.swing.JFrame implements AcquaintanceIterator {
                     JOptionPane.showMessageDialog(this, "Enter a valid value ( 1 to 300 chars)");
                     return;
                 }
-                if (!DateChecker.validDate(One)) {
+                if (!DateChecker.validateDate(One)) {
                     JOptionPane.showMessageDialog(this, "Enter a valid date");
                     return;
                 }
@@ -929,7 +922,7 @@ public class MUI extends javax.swing.JFrame implements AcquaintanceIterator {
                     JOptionPane.showMessageDialog(this, "Enter a valid value ( 1 to 300 chars)");
                     return;
                 }
-                if (!DateChecker.validDate(Two)) {
+                if (!DateChecker.validateDate(Two)) {
                     return;
                 }
                 Relatives rel;

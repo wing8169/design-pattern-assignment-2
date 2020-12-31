@@ -6,10 +6,10 @@
 package contactmanagementsoftware;
 
 /**
- *
  * @author ritz619
  */
 public interface Iterator {
-    public boolean hasNext();
-    public Object next();
+    boolean hasNext();
+
+    Object next();
 }

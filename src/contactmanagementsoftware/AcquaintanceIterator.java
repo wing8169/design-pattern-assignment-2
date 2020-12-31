@@ -6,9 +6,8 @@
 package contactmanagementsoftware;
 
 /**
- *
  * @author ritz619
  */
 public interface AcquaintanceIterator {
-    public Iterator getIterator();
+    Iterator getIterator();
 }

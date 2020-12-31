@@ -1,0 +1,6 @@
+1. Modified singleton to avoid race condition
+2. Fixed NotSerializableException due to Annoy and CantAnnoy classes.
+3. Converted all static variables that are unneeded to local variables.
+4. Deleted unused classes.
+5. Renamed DateChecker validDate to validateDate.
+6. 

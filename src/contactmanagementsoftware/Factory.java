@@ -6,9 +6,8 @@
 package contactmanagementsoftware;
 
 /**
- *
  * @author ritz619
  */
 public interface Factory {
-    public Acquaintances createAcquaintance(String type);
+    Acquaintances createAcquaintance(String type);
 }

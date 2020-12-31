@@ -8,7 +8,7 @@ public class Relatives extends Acquaintances implements Serializable {
     private String LDate;
 
     Relatives() {
-        
+
     }
 
     public String getBDate() {

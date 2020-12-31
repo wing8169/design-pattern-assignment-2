@@ -6,9 +6,8 @@
 package contactmanagementsoftware;
 
 /**
- *
  * @author ritz619
  */
 public interface Annoy {
-    public String annoy();
+    String annoy();
 }
