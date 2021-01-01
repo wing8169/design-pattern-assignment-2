@@ -14,7 +14,7 @@ public class MUI extends javax.swing.JFrame implements AcquaintanceIterator {
 
     private Factory acquaintancesFactory;
     private TextChecker textChecker;
-    private static ArrayList<ArrayList<Acquaintances>> acquaintances;
+    private ArrayList<ArrayList<Acquaintances>> acquaintances;
     private int categoryIndex;
     private int ArrayListIndex;
     private boolean addOrEditFlag;
