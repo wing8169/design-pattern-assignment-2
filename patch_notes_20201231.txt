@@ -5,4 +5,8 @@
 5. Renamed DateChecker validDate to validateDate.
 6. Fixed naming conventions and add JavaDocs comments for all classes.
 7. Fixed validation problems in all setters for Acquaintances classes.
-8. 
+8. Resolved singleton design pattern concurrency issue.
+9. Implemented iterator design pattern in building table data.
+10. Implemented facade design pattern in checkers.
+11. Implemented abstract factory design pattern in creating abstract class acquaintances.
+12. 
