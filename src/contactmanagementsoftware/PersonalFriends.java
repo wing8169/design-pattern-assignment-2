@@ -1,51 +1,68 @@
 package contactmanagementsoftware;
 
 import java.io.Serializable;
-import java.util.Scanner;
 
+/**
+ * PersonalFriends is the concrete class for personal friend
+ */
 public class PersonalFriends extends Acquaintances implements Serializable {
 
-    private String AContext;
-    private String ADate;
-    private String Events;
+    private String aContext;
+    private String aDate;
+    private String events;
 
-    PersonalFriends() {
-    }
-
+    /**
+     * get acquaintance context
+     *
+     * @return acquaintance context
+     */
     public String getAContext() {
-        return AContext;
+        return aContext;
     }
 
-    public void setAContext(String AContext) {
-        Scanner reader = new Scanner(System.in);
-        if (!AContext.isEmpty()) {
-            this.AContext = AContext;
-        } else {
-            System.out.println("Enter atleast one character");
-            setAContext(reader.nextLine());
-        }
+    /**
+     * set acquaintance context
+     *
+     * @param aContext acquaintance context
+     */
+    public void setAContext(String aContext) {
+        this.aContext = aContext;
     }
 
+    /**
+     * get acquaintance date
+     *
+     * @return acquaintance date
+     */
     public String getADate() {
-        return ADate;
+        return aDate;
     }
 
-    public void setADate(String ADate) {
-        this.ADate = ADate;
+    /**
+     * set acquaintance date
+     *
+     * @param aDate acquaintance date
+     */
+    public void setADate(String aDate) {
+        this.aDate = aDate;
     }
 
+    /**
+     * get event
+     *
+     * @return event
+     */
     public String getEvents() {
-        return Events;
+        return events;
     }
 
-    public void setEvents(String Events) {
-        Scanner reader = new Scanner(System.in);
-        if (!Events.isEmpty()) {
-            this.Events = Events;
-        } else {
-            System.out.println("Enter atleast one character");
-            setEvents(reader.nextLine());
-        }
+    /**
+     * set event
+     *
+     * @param events event
+     */
+    public void setEvents(String events) {
+        this.events = events;
     }
 
 }

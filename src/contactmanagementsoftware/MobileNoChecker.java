@@ -1,24 +1,22 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package contactmanagementsoftware;
 
 /**
  * @author ritz619
+ * MobileNoCheck validate the mobile number
  */
 public class MobileNoChecker {
+    /**
+     * check if mobile number is valid
+     *
+     * @param str moble number
+     * @return boolean is valid
+     */
     public static boolean validateMobileNo(String str) {
-        int x;
         if (str.isEmpty() || str.length() < 6 || str.length() > 15) {
             return false;
         }
-        for (int j = 0; j < str.length(); j++) {
-            x = str.charAt(j);
-            if (x < 48 || x > 57) {
-                return false;
-            }
+        for (char s : str.toCharArray()) {
+            if (!Character.isDigit(s)) return false;
         }
         return true;
     }

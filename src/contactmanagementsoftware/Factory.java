@@ -1,13 +1,15 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package contactmanagementsoftware;
 
 /**
  * @author ritz619
+ * Factory is the abstract factory in charge of creating acquaintance
  */
 public interface Factory {
+    /**
+     * create acquaintance
+     *
+     * @param type type of acquaintance
+     * @return acquaintance
+     */
     Acquaintances createAcquaintance(String type);
 }

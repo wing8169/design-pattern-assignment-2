@@ -1,15 +1,21 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package contactmanagementsoftware;
 
 /**
  * @author ritz619
+ * Iterator is the base interface for iterators
  */
 public interface Iterator {
+    /**
+     * check if has next item
+     *
+     * @return boolean has next
+     */
     boolean hasNext();
 
+    /**
+     * get the next item
+     *
+     * @return next item
+     */
     Object next();
 }

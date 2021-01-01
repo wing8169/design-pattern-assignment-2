@@ -30,7 +30,10 @@ public class MUI extends javax.swing.JFrame implements AcquaintanceIterator {
 
     private MUI() {
         initComponents();
-        String[] columnNames = {"S.No", "Name", "Mobile", " Email"};
+        // center align frame
+        setLocationRelativeTo(null);
+        // initialize column names
+        String[] columnNames = {"S. No", "Name", "Mobile", " Email"};
         DefaultTableModel model = new DefaultTableModel(null, columnNames);
         jXTable1.setModel(model);
         acquaintances = new ArrayList<>();

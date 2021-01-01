@@ -1,15 +1,17 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package contactmanagementsoftware;
 
 /**
  * @author ritz619
+ * AcquantanceFactory implements abstract factory Factory to create acquantance by type
  */
 public class AcquaintanceFactory implements Factory {
 
+    /**
+     * createAcquaintance creates acquaintance by type
+     *
+     * @param type type of acquaintance
+     * @return acquaintance
+     */
     @Override
     public Acquaintances createAcquaintance(String type) {
         if (type.equalsIgnoreCase("CasualAcquaintances")) {

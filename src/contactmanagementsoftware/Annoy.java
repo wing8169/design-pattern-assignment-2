@@ -1,13 +1,14 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package contactmanagementsoftware;
 
 /**
  * @author ritz619
+ * Annoy defines the behavior required method for annoying
  */
 public interface Annoy {
+    /**
+     * Annoy behavior
+     *
+     * @return annoy response
+     */
     String annoy();
 }

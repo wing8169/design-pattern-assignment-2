@@ -1,27 +1,30 @@
 package contactmanagementsoftware;
 
 import java.io.Serializable;
-import java.util.Scanner;
 
+/**
+ * ProfessionalFriends is the concrete class for professional friend
+ */
 public class ProfessionalFriends extends Acquaintances implements Serializable {
 
-    private String CommonInterests;
+    private String commonInterests;
 
-    ProfessionalFriends() {
-    }
-
+    /**
+     * get common interests
+     *
+     * @return common interests
+     */
     public String getCommonInterests() {
-        return CommonInterests;
+        return commonInterests;
     }
 
-    public void setCommonInterests(String CommonInterests) {
-        Scanner reader = new Scanner(System.in);
-        if (!CommonInterests.isEmpty()) {
-            this.CommonInterests = CommonInterests;
-        } else {
-            System.out.println("Enter atleast one character");
-            setCommonInterests(reader.nextLine());
-        }
+    /**
+     * set common interests
+     *
+     * @param commonInterests common interests
+     */
+    public void setCommonInterests(String commonInterests) {
+        this.commonInterests = commonInterests;
     }
 
 }

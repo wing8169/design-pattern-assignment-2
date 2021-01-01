@@ -2,49 +2,86 @@ package contactmanagementsoftware;
 
 import java.io.Serializable;
 
-public class Acquaintances implements Serializable {
+/**
+ * Acquaintances is the base abstract class for Acquaintances
+ */
+public abstract class Acquaintances implements Serializable {
 
-    private String Name;
-    private String MobileNo;
-    private String Email;
+    private String name;
+    private String mobileNo;
+    private String email;
     private Annoy annoyType;
 
-    Acquaintances() {
-    }
-
+    /**
+     * set name
+     *
+     * @param name name
+     */
     public void setName(String name) {
-        this.Name = name;
+        this.name = name;
     }
 
-    public void setMobileNo(String MobileNo) {
-        this.MobileNo = MobileNo;
+    /**
+     * set mobile number
+     *
+     * @param mobileNo mobile number
+     */
+    public void setMobileNo(String mobileNo) {
+        this.mobileNo = mobileNo;
     }
 
-    public void setEmail(String Email) {
-        this.Email = Email;
+    /**
+     * set email
+     *
+     * @param email email
+     */
+    public void setEmail(String email) {
+        this.email = email;
     }
 
+    /**
+     * get name
+     *
+     * @return name
+     */
     public String getName() {
-        return Name;
+        return name;
     }
 
+    /**
+     * get mobile number
+     *
+     * @return mobile number
+     */
     public String getMobileNo() {
-        return MobileNo;
+        return mobileNo;
     }
 
+    /**
+     * get email
+     *
+     * @return email
+     */
     public String getEmail() {
-        return Email;
+        return email;
     }
 
+    /**
+     * check if the person is annoying
+     *
+     * @return response from the person
+     */
     public String tryToAnnoy() {
-
         return annoyType.annoy();
     }
 
+    /**
+     * define if the person is annoying
+     *
+     * @param newAnnoyType annoy behavior
+     */
     public void setAnnoyingAbility(Annoy newAnnoyType) {
-
         annoyType = newAnnoyType;
-
     }
 
 }

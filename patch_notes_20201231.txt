@@ -3,4 +3,6 @@
 3. Converted all static variables that are unneeded to local variables.
 4. Deleted unused classes.
 5. Renamed DateChecker validDate to validateDate.
-6. 
+6. Fixed naming conventions and add JavaDocs comments for all classes.
+7. Fixed validation problems in all setters for Acquaintances classes.
+8. 

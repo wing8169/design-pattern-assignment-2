@@ -1,57 +1,68 @@
 package contactmanagementsoftware;
 
 import java.io.Serializable;
-import java.util.Scanner;
 
+/**
+ * CasualAcquaintances is the concrete class for casual acquaintances
+ */
 public class CasualAcquaintances extends Acquaintances implements Serializable {
 
-    private String WhenWhere;
-    private String Circumstances;
-    private String OtherInfo;
+    private String whenWhere;
+    private String circumstances;
+    private String otherInfo;
 
-    CasualAcquaintances() {
-    }
-
+    /**
+     * get when and where met the person
+     *
+     * @return when where
+     */
     public String getWhenWhere() {
-        return WhenWhere;
+        return whenWhere;
     }
 
-    public void setWhenWhere(String WhenWhere) {
-        Scanner reader = new Scanner(System.in);
-        if (!WhenWhere.isEmpty()) {
-            this.WhenWhere = WhenWhere;
-        } else {
-            System.out.println("Enter at least one character");
-            setWhenWhere(reader.nextLine());
-        }
+    /**
+     * set when and where met the person
+     *
+     * @param whenWhere when and where
+     */
+    public void setWhenWhere(String whenWhere) {
+        this.whenWhere = whenWhere;
     }
 
+    /**
+     * get circumstances meeting the person
+     *
+     * @return circumstances
+     */
     public String getCircumstances() {
-        return Circumstances;
+        return circumstances;
     }
 
-    public void setCircumstances(String Circumstances) {
-        Scanner reader = new Scanner(System.in);
-        if (!Circumstances.isEmpty()) {
-            this.Circumstances = Circumstances;
-        } else {
-            System.out.println("Enter at least one character");
-            setCircumstances(reader.nextLine());
-        }
+    /**
+     * set circumstances meeting the person
+     *
+     * @param circumstances circumstances
+     */
+    public void setCircumstances(String circumstances) {
+        this.circumstances = circumstances;
     }
 
+    /**
+     * get other information
+     *
+     * @return other information
+     */
     public String getOtherInfo() {
-        return OtherInfo;
+        return otherInfo;
     }
 
-    public void setOtherInfo(String OtherInfo) {
-        Scanner reader = new Scanner(System.in);
-        if (!OtherInfo.isEmpty()) {
-            this.OtherInfo = OtherInfo;
-        } else {
-            System.out.println("Enter at least one character");
-            setOtherInfo(reader.nextLine());
-        }
+    /**
+     * set other information
+     *
+     * @param otherInfo other information
+     */
+    public void setOtherInfo(String otherInfo) {
+        this.otherInfo = otherInfo;
     }
 
 }
