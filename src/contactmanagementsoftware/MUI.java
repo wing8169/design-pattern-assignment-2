@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package contactmanagementsoftware;
 
 import javax.swing.*;
@@ -13,13 +8,11 @@ import java.util.ArrayList;
 
 /**
  * @author ritz619
+ * MUI is the main application file with business logic
  */
 public class MUI extends javax.swing.JFrame implements AcquaintanceIterator {
 
-    /**
-     * Creates new form MUI
-     */
-    private AcquaintanceFactory Acquaintancesfactory;
+    private Factory acquaintancesfactory;
     private static ArrayList<ArrayList<Acquaintances>> acquaintances;
     private int categoryIndex;
     private int ArrayListIndex;
@@ -45,7 +38,7 @@ public class MUI extends javax.swing.JFrame implements AcquaintanceIterator {
         acquaintances.add(relatives);
         acquaintances.add(professionalFriends);
         acquaintances.add(casualAcquaintances);
-        Acquaintancesfactory = new AcquaintanceFactory();
+        acquaintancesfactory = new AcquaintanceFactory();
         setUpTableData();
     }
 
@@ -892,7 +885,7 @@ public class MUI extends javax.swing.JFrame implements AcquaintanceIterator {
                 }
                 PersonalFriends personalF;
                 if (addOrEditFlag) {
-                    personalF = (PersonalFriends) Acquaintancesfactory.createAcquaintance("PersonalFriends");
+                    personalF = (PersonalFriends) acquaintancesfactory.createAcquaintance("PersonalFriends");
                 } else {
                     personalF = (PersonalFriends) acquaintances.get(categoryIndex).get(ArrayListIndex);
                 }
@@ -928,7 +921,7 @@ public class MUI extends javax.swing.JFrame implements AcquaintanceIterator {
                 }
                 Relatives rel;
                 if (addOrEditFlag) {
-                    rel = (Relatives) Acquaintancesfactory.createAcquaintance("Relatives");
+                    rel = (Relatives) acquaintancesfactory.createAcquaintance("Relatives");
                 } else {
                     rel = (Relatives) acquaintances.get(categoryIndex).get(ArrayListIndex);
                 }
@@ -951,7 +944,7 @@ public class MUI extends javax.swing.JFrame implements AcquaintanceIterator {
                 }
                 ProfessionalFriends proF;
                 if (addOrEditFlag) {
-                    proF = (ProfessionalFriends) Acquaintancesfactory.createAcquaintance("ProfessionalFriends");
+                    proF = (ProfessionalFriends) acquaintancesfactory.createAcquaintance("ProfessionalFriends");
                 } else {
                     proF = (ProfessionalFriends) acquaintances.get(categoryIndex).get(ArrayListIndex);
                 }
@@ -983,7 +976,7 @@ public class MUI extends javax.swing.JFrame implements AcquaintanceIterator {
                 }
                 CasualAcquaintances ca;
                 if (addOrEditFlag) {
-                    ca = (CasualAcquaintances) Acquaintancesfactory.createAcquaintance("CasualAcquaintances");
+                    ca = (CasualAcquaintances) acquaintancesfactory.createAcquaintance("CasualAcquaintances");
                 } else {
                     ca = (CasualAcquaintances) acquaintances.get(categoryIndex).get(ArrayListIndex);
                 }
