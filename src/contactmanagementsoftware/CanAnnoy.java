@@ -10,7 +10,7 @@ public class CanAnnoy implements Annoy, Serializable {
 
     @Override
     public String annoy() {
-        return "Relatives are annoying.";
+        return "Y";
     }
 
 }
