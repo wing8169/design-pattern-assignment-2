@@ -199,7 +199,7 @@ public class MUI extends javax.swing.JFrame implements AcquaintanceIterator {
         tableModel.setRowCount(0);
         Iterator iter = getIterator();
         int index = 0;
-        while(iter.hasNext()) {
+        while (iter.hasNext()) {
             Acquaintances item = (Acquaintances) iter.next();
             String[] data = new String[4];
             data[0] = Integer.toString(++index);
@@ -228,7 +228,7 @@ public class MUI extends javax.swing.JFrame implements AcquaintanceIterator {
         searchContact = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        Categories = new javax.swing.JList();
+        categories = new javax.swing.JList();
         jScrollPane2 = new javax.swing.JScrollPane();
         jXTable1 = new org.jdesktop.swingx.JXTable();
         jLabel1 = new javax.swing.JLabel();
@@ -295,7 +295,7 @@ public class MUI extends javax.swing.JFrame implements AcquaintanceIterator {
             }
         });
 
-        Categories.setModel(new javax.swing.AbstractListModel() {
+        categories.setModel(new javax.swing.AbstractListModel() {
             String[] strings = {"Personal Friends", "Relatives", "Professional Friends", "Casual Acquaintances"};
 
             public int getSize() {
@@ -306,12 +306,12 @@ public class MUI extends javax.swing.JFrame implements AcquaintanceIterator {
                 return strings[i];
             }
         });
-        Categories.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+        categories.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
             public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
-                CategoriesValueChanged(evt);
+                categoriesValueChanged(evt);
             }
         });
-        jScrollPane1.setViewportView(Categories);
+        jScrollPane1.setViewportView(categories);
 
         jXTable1.setModel(new javax.swing.table.DefaultTableModel(
                 new Object[][]{
@@ -612,7 +612,7 @@ public class MUI extends javax.swing.JFrame implements AcquaintanceIterator {
     }// </editor-fold>//GEN-END:initComponents
 
     private void addContactActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addContactActionPerformed
-        int index = Categories.getSelectedIndex();
+        int index = categories.getSelectedIndex();
         if (index < 0) {
             JOptionPane.showMessageDialog(this, "Select a category!");
             return;
@@ -626,7 +626,7 @@ public class MUI extends javax.swing.JFrame implements AcquaintanceIterator {
     }//GEN-LAST:event_addContactActionPerformed
 
     private void deleteContactActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteContactActionPerformed
-        int index = Categories.getSelectedIndex();
+        int index = categories.getSelectedIndex();
         if (index < 0) {
             JOptionPane.showMessageDialog(this, "Select a category!");
             return;
@@ -660,12 +660,12 @@ public class MUI extends javax.swing.JFrame implements AcquaintanceIterator {
         System.exit(0);        // TODO add your handling code here:
     }//GEN-LAST:event_jButton4ActionPerformed
 
-    private void CategoriesValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_CategoriesValueChanged
+    private void categoriesValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_categoriesValueChanged
         setUpTableData();
-    }//GEN-LAST:event_CategoriesValueChanged
+    }//GEN-LAST:event_categoriesValueChanged
 
     private void editContactActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editContactActionPerformed
-        int index = Categories.getSelectedIndex();
+        int index = categories.getSelectedIndex();
         if (index < 0) {
             JOptionPane.showMessageDialog(this, "Select a category!");
             return;
@@ -685,7 +685,7 @@ public class MUI extends javax.swing.JFrame implements AcquaintanceIterator {
     }//GEN-LAST:event_editContactActionPerformed
 
     private void detailOfContactActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_detailOfContactActionPerformed
-        int index = Categories.getSelectedIndex();
+        int index = categories.getSelectedIndex();
         if (index < 0) {
             JOptionPane.showMessageDialog(this, "Select a category!");
             return;
@@ -785,6 +785,7 @@ public class MUI extends javax.swing.JFrame implements AcquaintanceIterator {
             try {
                 temp = (ArrayList<ArrayList<Acquaintances>>) SerializationUtil.deserialize(selectedFile);
             } catch (ClassNotFoundException | IOException e) {
+                e.printStackTrace();
                 JOptionPane.showMessageDialog(this, "Error");
                 return;
             }
@@ -1047,7 +1048,7 @@ public class MUI extends javax.swing.JFrame implements AcquaintanceIterator {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JList Categories;
+    private javax.swing.JList categories;
     private javax.swing.JPanel Display_Details;
     private javax.swing.JPanel Main_Menu;
     private javax.swing.JPanel Operation_Menu;
@@ -1098,9 +1099,9 @@ public class MUI extends javax.swing.JFrame implements AcquaintanceIterator {
 
         @Override
         public boolean hasNext() {
-
             try {
-                return index < acquaintances.get(Categories.getSelectedIndex()).size();
+                return categories.getSelectedIndex() != -1 &&
+                        index < acquaintances.get(categories.getSelectedIndex()).size();
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -1109,9 +1110,8 @@ public class MUI extends javax.swing.JFrame implements AcquaintanceIterator {
 
         @Override
         public Object next() {
-
             if (this.hasNext()) {
-                return acquaintances.get(Categories.getSelectedIndex()).get(index++);
+                return acquaintances.get(categories.getSelectedIndex()).get(index++);
             }
             return null;
         }
