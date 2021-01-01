@@ -15,22 +15,26 @@ public class MUI extends javax.swing.JFrame implements AcquaintanceIterator {
     private Factory acquaintancesFactory;
     private TextChecker textChecker;
     private ArrayList<ArrayList<Acquaintances>> acquaintances;
-    private int categoryIndex;
-    private int ArrayListIndex;
-    private boolean addOrEditFlag;
-    private boolean detailsFlag;
-    private String searchString;
-    private static MUI manager;
+    private int categoryIndex; // currently selected category's index (only used for add and edit)
+    private int arrayListIndex; // currently selected item's index
+    private boolean addOrEditFlag; // set add / edit page
+    private boolean detailsFlag; // set details page
+    private String searchString; // set search string
+    private static MUI manager; // static instance for singleton design pattern
 
     private MUI() {
+        // initialize checker and factory
         textChecker = new TextChecker();
+        acquaintancesFactory = new AcquaintanceFactory();
+        // initialize components
         initComponents();
         // center align frame
         setLocationRelativeTo(null);
-        // initialize column names
+        // initialize table
         String[] columnNames = {"S. No", "Name", "Mobile", " Email"};
         DefaultTableModel model = new DefaultTableModel(null, columnNames);
         jXTable1.setModel(model);
+        // initialize local states
         acquaintances = new ArrayList<>();
         ArrayList<Acquaintances> personalFriends = new ArrayList<>();
         ArrayList<Acquaintances> relatives = new ArrayList<>();
@@ -40,10 +44,15 @@ public class MUI extends javax.swing.JFrame implements AcquaintanceIterator {
         acquaintances.add(relatives);
         acquaintances.add(professionalFriends);
         acquaintances.add(casualAcquaintances);
-        acquaintancesFactory = new AcquaintanceFactory();
+        // set up table data
         setUpTableData();
     }
 
+    /**
+     * getIntance gets the MUI instance and creates it if does not exist yet
+     *
+     * @return MUI instance
+     */
     public static MUI getInstance() {
         if (manager == null) {
             synchronized (MUI.class) {
@@ -77,7 +86,7 @@ public class MUI extends javax.swing.JFrame implements AcquaintanceIterator {
         } else {
             op = "Edit";
             jButton10.setText("Save");
-            Acquaintances e = acquaintances.get(categoryIndex).get(ArrayListIndex);
+            Acquaintances e = acquaintances.get(categoryIndex).get(arrayListIndex);
             name.setText(e.getName());
             mobile.setText(e.getMobileNo());
             email.setText(e.getEmail());
@@ -189,6 +198,9 @@ public class MUI extends javax.swing.JFrame implements AcquaintanceIterator {
         }
     }
 
+    /**
+     * set the table data to the latest one based on the data selected
+     */
     public final void setUpTableData() {
         DefaultTableModel tableModel = (DefaultTableModel) jXTable1.getModel();
         tableModel.setRowCount(0);
@@ -670,7 +682,7 @@ public class MUI extends javax.swing.JFrame implements AcquaintanceIterator {
             JOptionPane.showMessageDialog(this, "Select an entry!");
             return;
         }
-        ArrayListIndex = table_index;
+        arrayListIndex = table_index;
         addOrEditFlag = false;
         detailsFlag = false;
         categoryIndex = index;
@@ -690,7 +702,7 @@ public class MUI extends javax.swing.JFrame implements AcquaintanceIterator {
             JOptionPane.showMessageDialog(this, "Select an entry!");
             return;
         }
-        ArrayListIndex = tindex;
+        arrayListIndex = tindex;
         addOrEditFlag = false;
         categoryIndex = index;
         Main_Menu.setVisible(false);
@@ -889,7 +901,7 @@ public class MUI extends javax.swing.JFrame implements AcquaintanceIterator {
                 if (addOrEditFlag) {
                     personalF = (PersonalFriends) acquaintancesFactory.createAcquaintance("PersonalFriends");
                 } else {
-                    personalF = (PersonalFriends) acquaintances.get(categoryIndex).get(ArrayListIndex);
+                    personalF = (PersonalFriends) acquaintances.get(categoryIndex).get(arrayListIndex);
                 }
                 personalF.setName(Name);
                 personalF.setMobileNo(Mobile);
@@ -925,7 +937,7 @@ public class MUI extends javax.swing.JFrame implements AcquaintanceIterator {
                 if (addOrEditFlag) {
                     rel = (Relatives) acquaintancesFactory.createAcquaintance("Relatives");
                 } else {
-                    rel = (Relatives) acquaintances.get(categoryIndex).get(ArrayListIndex);
+                    rel = (Relatives) acquaintances.get(categoryIndex).get(arrayListIndex);
                 }
                 rel.setName(Name);
                 rel.setMobileNo(Mobile);
@@ -948,7 +960,7 @@ public class MUI extends javax.swing.JFrame implements AcquaintanceIterator {
                 if (addOrEditFlag) {
                     proF = (ProfessionalFriends) acquaintancesFactory.createAcquaintance("ProfessionalFriends");
                 } else {
-                    proF = (ProfessionalFriends) acquaintances.get(categoryIndex).get(ArrayListIndex);
+                    proF = (ProfessionalFriends) acquaintances.get(categoryIndex).get(arrayListIndex);
                 }
                 proF.setName(Name);
                 proF.setMobileNo(Mobile);
@@ -980,7 +992,7 @@ public class MUI extends javax.swing.JFrame implements AcquaintanceIterator {
                 if (addOrEditFlag) {
                     ca = (CasualAcquaintances) acquaintancesFactory.createAcquaintance("CasualAcquaintances");
                 } else {
-                    ca = (CasualAcquaintances) acquaintances.get(categoryIndex).get(ArrayListIndex);
+                    ca = (CasualAcquaintances) acquaintances.get(categoryIndex).get(arrayListIndex);
                 }
                 ca.setName(Name);
                 ca.setMobileNo(Mobile);
