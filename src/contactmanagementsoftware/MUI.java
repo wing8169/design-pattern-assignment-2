@@ -194,29 +194,12 @@ public class MUI extends javax.swing.JFrame implements AcquaintanceIterator {
     public final void setUpTableData() {
         DefaultTableModel tableModel = (DefaultTableModel) jXTable1.getModel();
         tableModel.setRowCount(0);
-//        ArrayList<Acquaintances> list;
-//        try {
-//            list = acquaintances.get(Categories.getSelectedIndex());
-//        } catch (Exception e) {
-//            return;
-//        }
-//        for (int i = 0; i < list.size(); i++) {
-//            String[] data = new String[4];
-//            data[0] = Integer.toString(i + 1);
-//            data[1] = list.get(i).getName();
-//            data[2] = list.get(i).getMobileNo();
-//            data[3] = list.get(i).getEmail();
-//            tableModel.addRow(data);
-//        }
-
-//        andre
-
         Iterator iter = getIterator();
         int index = 0;
         while(iter.hasNext()) {
             Acquaintances item = (Acquaintances) iter.next();
             String[] data = new String[4];
-            data[0] = Integer.toString(index+1);
+            data[0] = Integer.toString(++index);
             data[1] = item.getName();
             data[2] = item.getMobileNo();
             data[3] = item.getEmail();
@@ -1113,20 +1096,12 @@ public class MUI extends javax.swing.JFrame implements AcquaintanceIterator {
         @Override
         public boolean hasNext() {
 
-//            if (index < acquaintances.get(Categories.getSelectedIndex()).size()) {
-//                return true;
-//            }
-//            return false;
-
             try {
-                if (index < acquaintances.get(Categories.getSelectedIndex()).size()) {
-                    return true;
-                }
-                return false;
+                return index < acquaintances.get(Categories.getSelectedIndex()).size();
             } catch (Exception e) {
-                System.out.println(e.);
-                return false;
+                e.printStackTrace();
             }
+            return false;
         }
 
         @Override
