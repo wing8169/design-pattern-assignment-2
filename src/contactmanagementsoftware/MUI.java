@@ -33,7 +33,6 @@ public class MUI extends javax.swing.JFrame implements AcquaintanceIterator {
         String[] columnNames = {"S.No", "Name", "Mobile", " Email"};
         DefaultTableModel model = new DefaultTableModel(null, columnNames);
         jXTable1.setModel(model);
-        setUpTableData();
         acquaintances = new ArrayList<>();
         ArrayList<Acquaintances> personalFriends = new ArrayList<>();
         ArrayList<Acquaintances> relatives = new ArrayList<>();
@@ -44,6 +43,7 @@ public class MUI extends javax.swing.JFrame implements AcquaintanceIterator {
         acquaintances.add(professionalFriends);
         acquaintances.add(casualAcquaintances);
         Acquaintancesfactory = new AcquaintanceFactory();
+        setUpTableData();
     }
 
     public static MUI getInstance() {
@@ -194,18 +194,15 @@ public class MUI extends javax.swing.JFrame implements AcquaintanceIterator {
     public final void setUpTableData() {
         DefaultTableModel tableModel = (DefaultTableModel) jXTable1.getModel();
         tableModel.setRowCount(0);
-        ArrayList<Acquaintances> list;
-        try {
-            list = acquaintances.get(Categories.getSelectedIndex());
-        } catch (Exception e) {
-            return;
-        }
-        for (int i = 0; i < list.size(); i++) {
+        Iterator iter = getIterator();
+        int index = 0;
+        while(iter.hasNext()) {
+            Acquaintances item = (Acquaintances) iter.next();
             String[] data = new String[4];
-            data[0] = Integer.toString(i + 1);
-            data[1] = list.get(i).getName();
-            data[2] = list.get(i).getMobileNo();
-            data[3] = list.get(i).getEmail();
+            data[0] = Integer.toString(++index);
+            data[1] = item.getName();
+            data[2] = item.getMobileNo();
+            data[3] = item.getEmail();
             tableModel.addRow(data);
         }
         jXTable1.setModel(tableModel);
@@ -1099,8 +1096,10 @@ public class MUI extends javax.swing.JFrame implements AcquaintanceIterator {
         @Override
         public boolean hasNext() {
 
-            if (index < acquaintances.get(categoryIndex).size()) {
-                return true;
+            try {
+                return index < acquaintances.get(Categories.getSelectedIndex()).size();
+            } catch (Exception e) {
+                e.printStackTrace();
             }
             return false;
         }
@@ -1109,7 +1108,7 @@ public class MUI extends javax.swing.JFrame implements AcquaintanceIterator {
         public Object next() {
 
             if (this.hasNext()) {
-                return acquaintances.get(categoryIndex).get(index++);
+                return acquaintances.get(Categories.getSelectedIndex()).get(index++);
             }
             return null;
         }
