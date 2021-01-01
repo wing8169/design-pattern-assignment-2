@@ -13,6 +13,7 @@ import java.util.ArrayList;
 public class MUI extends javax.swing.JFrame implements AcquaintanceIterator {
 
     private Factory acquaintancesFactory;
+    private TextChecker textChecker;
     private static ArrayList<ArrayList<Acquaintances>> acquaintances;
     private int categoryIndex;
     private int ArrayListIndex;
@@ -22,6 +23,7 @@ public class MUI extends javax.swing.JFrame implements AcquaintanceIterator {
     private static MUI manager;
 
     private MUI() {
+        textChecker = new TextChecker();
         initComponents();
         // center align frame
         setLocationRelativeTo(null);
@@ -852,7 +854,7 @@ public class MUI extends javax.swing.JFrame implements AcquaintanceIterator {
             return;
         }
         String Mobile = mobile.getText();
-        if (!MobileNoChecker.validateMobileNo(Mobile)) {
+        if (!textChecker.validateMobileNo(Mobile)) {
             JOptionPane.showMessageDialog(this, "Enter a valid mobile number (6-15 digits)");
             return;
         }
@@ -875,7 +877,7 @@ public class MUI extends javax.swing.JFrame implements AcquaintanceIterator {
                     return;
                 }
                 Three = three.getText();
-                if (!DateChecker.validateDate(Three)) {
+                if (!textChecker.validateDate(Three)) {
                     JOptionPane.showMessageDialog(this, "Enter a valid date");
                     return;
                 }
@@ -907,7 +909,7 @@ public class MUI extends javax.swing.JFrame implements AcquaintanceIterator {
                     JOptionPane.showMessageDialog(this, "Enter a valid value ( 1 to 300 chars)");
                     return;
                 }
-                if (!DateChecker.validateDate(One)) {
+                if (!textChecker.validateDate(One)) {
                     JOptionPane.showMessageDialog(this, "Enter a valid date");
                     return;
                 }
@@ -916,7 +918,7 @@ public class MUI extends javax.swing.JFrame implements AcquaintanceIterator {
                     JOptionPane.showMessageDialog(this, "Enter a valid value ( 1 to 300 chars)");
                     return;
                 }
-                if (!DateChecker.validateDate(Two)) {
+                if (!textChecker.validateDate(Two)) {
                     return;
                 }
                 Relatives rel;

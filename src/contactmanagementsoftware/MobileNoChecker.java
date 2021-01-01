@@ -4,14 +4,9 @@ package contactmanagementsoftware;
  * @author ritz619
  * MobileNoCheck validate the mobile number
  */
-public class MobileNoChecker {
-    /**
-     * check if mobile number is valid
-     *
-     * @param str moble number
-     * @return boolean is valid
-     */
-    public static boolean validateMobileNo(String str) {
+public class MobileNoChecker implements Checker {
+    @Override
+    public boolean validate(String str) {
         if (str.isEmpty() || str.length() < 6 || str.length() > 15) {
             return false;
         }
