@@ -889,12 +889,12 @@ public class MUI extends javax.swing.JFrame implements AcquaintanceIterator {
         switch (categoryIndex) {
             case 0: //perF
                 One = one.getText();
-                if (One.isEmpty() || One.length() > 300) {
+                if (!textChecker.validateNormalText(One)) {
                     JOptionPane.showMessageDialog(this, "Enter a valid value ( 1 to 300 chars)");
                     return;
                 }
                 Two = two.getText();
-                if (Two.isEmpty() || Two.length() > 300) {
+                if (!textChecker.validateNormalText(Two)) {
                     JOptionPane.showMessageDialog(this, "Enter a valid value ( 1 to 300 chars)");
                     return;
                 }
@@ -903,7 +903,7 @@ public class MUI extends javax.swing.JFrame implements AcquaintanceIterator {
                     JOptionPane.showMessageDialog(this, "Enter a valid date");
                     return;
                 }
-                if (Three.isEmpty() || Three.length() > 300) {
+                if (!textChecker.validateNormalText(Three)) {
                     JOptionPane.showMessageDialog(this, "Enter a valid value ( 1 to 300 chars)");
                     return;
                 }
@@ -927,7 +927,7 @@ public class MUI extends javax.swing.JFrame implements AcquaintanceIterator {
                 break;
             case 1: //rel
                 One = one.getText();
-                if (One.isEmpty() || One.length() > 300) {
+                if (!textChecker.validateNormalText(One)) {
                     JOptionPane.showMessageDialog(this, "Enter a valid value ( 1 to 300 chars)");
                     return;
                 }
@@ -936,7 +936,7 @@ public class MUI extends javax.swing.JFrame implements AcquaintanceIterator {
                     return;
                 }
                 Two = two.getText();
-                if (Two.isEmpty() || Two.length() > 300) {
+                if (!textChecker.validateNormalText(Two)) {
                     JOptionPane.showMessageDialog(this, "Enter a valid value ( 1 to 300 chars)");
                     return;
                 }
@@ -962,7 +962,7 @@ public class MUI extends javax.swing.JFrame implements AcquaintanceIterator {
                 break;
             case 2: //proF
                 One = one.getText();
-                if (One.isEmpty() || One.length() > 300) {
+                if (!textChecker.validateNormalText(One)) {
                     JOptionPane.showMessageDialog(this, "Enter a valid value ( 1 to 300 chars)");
                     return;
                 }
@@ -984,17 +984,17 @@ public class MUI extends javax.swing.JFrame implements AcquaintanceIterator {
                 break;
             case 3: //ca
                 One = one.getText();
-                if (One.isEmpty() || One.length() > 300) {
+                if (!textChecker.validateNormalText(One)) {
                     JOptionPane.showMessageDialog(this, "Enter a valid value ( 1 to 300 chars)");
                     return;
                 }
                 Two = two.getText();
-                if (Two.isEmpty() || Two.length() > 300) {
+                if (!textChecker.validateNormalText(Two)) {
                     JOptionPane.showMessageDialog(this, "Enter a valid value ( 1 to 300 chars)");
                     return;
                 }
                 Three = three.getText();
-                if (Three.isEmpty() || Three.length() > 300) {
+                if (!textChecker.validateNormalText(Three)) {
                     JOptionPane.showMessageDialog(this, "Enter a valid value ( 1 to 300 chars)");
                     return;
                 }
