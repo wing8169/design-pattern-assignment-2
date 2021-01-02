@@ -11,3 +11,4 @@
 11. Implemented abstract factory design pattern in creating abstract class acquaintances.
 12. Implemented form process strategy via strategy design pattern.
 13. Implemented singleton design pattern for the strategies.
+14. Implemented UI for the annoying field set by the original author.

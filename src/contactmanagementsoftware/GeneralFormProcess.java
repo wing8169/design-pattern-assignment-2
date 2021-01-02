@@ -34,7 +34,7 @@ public class GeneralFormProcess implements FormProcessStrategy {
 
     @Override
     public boolean validateFormData(JFrame frame, JTextField name, JTextField mobile, JTextField email, JTextArea one,
-                                    JTextArea two, JTextArea three, ArrayList<ArrayList<Acquaintances>> acquaintances,
+                                    JTextArea two, JTextArea three, JTextArea four, ArrayList<ArrayList<Acquaintances>> acquaintances,
                                     int categoryIndex, int arrayListIndex, boolean isAdd) {
         String Name = name.getText();
         if (Name.isEmpty()) {

@@ -24,9 +24,9 @@ public class PersonalFormProcess extends GeneralFormProcess {
 
     @Override
     public boolean validateFormData(JFrame frame, JTextField name, JTextField mobile, JTextField email, JTextArea one,
-                                    JTextArea two, JTextArea three, ArrayList<ArrayList<Acquaintances>> acquaintances,
+                                    JTextArea two, JTextArea three, JTextArea four, ArrayList<ArrayList<Acquaintances>> acquaintances,
                                     int categoryIndex, int arrayListIndex, boolean isAdd) {
-        boolean valid = super.validateFormData(frame, name, mobile, email, one, two, three, acquaintances, categoryIndex,
+        boolean valid = super.validateFormData(frame, name, mobile, email, one, two, three, four, acquaintances, categoryIndex,
                 arrayListIndex, isAdd);
         if (!valid) return false;
         String Name = name.getText();
@@ -47,6 +47,11 @@ public class PersonalFormProcess extends GeneralFormProcess {
             JOptionPane.showMessageDialog(frame, "Enter a valid date");
             return false;
         }
+        String Four = four.getText();
+        if (!Four.equalsIgnoreCase("y") && !Four.equalsIgnoreCase("n")) {
+            JOptionPane.showMessageDialog(frame, "Enter Y or N");
+            return false;
+        }
         PersonalFriends personalF;
         if (isAdd) {
             personalF = (PersonalFriends) factory.createAcquaintance("PersonalFriends");
@@ -59,8 +64,7 @@ public class PersonalFormProcess extends GeneralFormProcess {
         personalF.setEvents(One);
         personalF.setAContext(Two);
         personalF.setADate(Three);
-        personalF.setAnnoyingAbility(new CantAnnoy());
-        System.out.println(personalF.tryToAnnoy());
+        personalF.setAnnoyingAbility(Four);
         if (isAdd) {
             acquaintances.get(categoryIndex).add(personalF);
         }

@@ -17,6 +17,7 @@ public interface FormProcessStrategy {
      * @param one            dynamic field one
      * @param two            dynamic field two
      * @param three          dynamic field three
+     * @param four           dynamic field four
      * @param acquaintances  acquaintances
      * @param categoryIndex  category index
      * @param arrayListIndex arrayList index
@@ -24,6 +25,6 @@ public interface FormProcessStrategy {
      * @return if the data is valid
      */
     boolean validateFormData(JFrame frame, JTextField name, JTextField mobile, JTextField email, JTextArea one,
-                             JTextArea two, JTextArea three, ArrayList<ArrayList<Acquaintances>> acquaintances,
+                             JTextArea two, JTextArea three, JTextArea four, ArrayList<ArrayList<Acquaintances>> acquaintances,
                              int categoryIndex, int arrayListIndex, boolean isAdd);
 }
