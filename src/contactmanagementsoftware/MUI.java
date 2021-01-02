@@ -63,7 +63,11 @@ public class MUI extends javax.swing.JFrame implements AcquaintanceIterator {
         return manager;
     }
 
+    /**
+     * setDescription defines the form metadata based on the flags
+     */
     public void setDescription() {
+        //  reset form data
         name.setText("");
         mobile.setText("");
         email.setText("");
@@ -71,6 +75,7 @@ public class MUI extends javax.swing.JFrame implements AcquaintanceIterator {
         two.setText("");
         three.setText("");
 
+        // if the type is add / edit, set the form to editable, else not editable
         if (!detailsFlag) {
             name.setEditable(true);
             mobile.setEditable(true);
@@ -78,18 +83,35 @@ public class MUI extends javax.swing.JFrame implements AcquaintanceIterator {
             one.setEditable(true);
             two.setEditable(true);
             three.setEditable(true);
+            jButton10.setVisible(true);
+            jButton11.setVisible(true);
+        } else {
+            name.setEditable(false);
+            mobile.setEditable(false);
+            email.setEditable(false);
+            one.setEditable(false);
+            two.setEditable(false);
+            three.setEditable(false);
+            jButton10.setText("Back to main menu");
+            jButton11.setVisible(false);
+            Operation_Menu.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Display Details", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("DialogInput", 1, 16)));
         }
+
         String op;
         if (addOrEditFlag) {
             op = "Add";
             jButton10.setText("Add");
         } else {
+            // if is edit form, fetch the relevant data and set text
             op = "Edit";
             jButton10.setText("Save");
+            // fetch the selected data
             Acquaintances e = acquaintances.get(categoryIndex).get(arrayListIndex);
+            // set general information
             name.setText(e.getName());
             mobile.setText(e.getMobileNo());
             email.setText(e.getEmail());
+            // based on the acquaintances category, set relevant text
             switch (categoryIndex) {
                 case 0:
                     PersonalFriends perF = (PersonalFriends) e;
@@ -118,8 +140,7 @@ public class MUI extends javax.swing.JFrame implements AcquaintanceIterator {
                     break;
             }
         }
-        jButton10.setVisible(true);
-        jButton11.setVisible(true);
+        // set form visibility and texts
         switch (categoryIndex) {
             case 0:
                 one.setVisible(true);
@@ -172,7 +193,7 @@ public class MUI extends javax.swing.JFrame implements AcquaintanceIterator {
                 three.setVisible(true);
                 Operation_Menu.setBorder(javax.swing.BorderFactory.createTitledBorder(null, op + " Casual Acquaintances Details", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("DialogInput", 1, 16)));
                 jLabel7.setText("First meeting time & location:");
-                jLabel8.setText("First meeting CIrcumstances:");
+                jLabel8.setText("First meeting Circumstances:");
                 jLabel9.setText("Other useful information:");
                 jLabel7.setVisible(true);
                 jLabel8.setVisible(true);
@@ -183,18 +204,6 @@ public class MUI extends javax.swing.JFrame implements AcquaintanceIterator {
                 break;
             default:
                 break;
-        }
-
-        if (detailsFlag) {
-            name.setEditable(false);
-            mobile.setEditable(false);
-            email.setEditable(false);
-            one.setEditable(false);
-            two.setEditable(false);
-            three.setEditable(false);
-            jButton10.setText("Back to main menu");
-            jButton11.setVisible(false);
-            Operation_Menu.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Display Details", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("DialogInput", 1, 16)));
         }
     }
 
@@ -511,7 +520,7 @@ public class MUI extends javax.swing.JFrame implements AcquaintanceIterator {
 
         jLabel7.setText("First meeting time & location:");
 
-        jLabel8.setText("First meeting CIrcumstances:");
+        jLabel8.setText("First meeting Circumstances:");
 
         jLabel9.setText("Other useful information:");
 
@@ -619,6 +628,7 @@ public class MUI extends javax.swing.JFrame implements AcquaintanceIterator {
     }// </editor-fold>//GEN-END:initComponents
 
     private void addContactActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addContactActionPerformed
+        // get selected category
         int index = categories.getSelectedIndex();
         if (index < 0) {
             JOptionPane.showMessageDialog(this, "Select a category!");
