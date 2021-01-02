@@ -1,14 +1,13 @@
-1. Modified singleton to avoid race condition
-2. Fixed NotSerializableException due to Annoy and CantAnnoy classes.
-3. Converted all static variables that are unneeded to local variables.
-4. Deleted unused classes.
-5. Renamed DateChecker validDate to validateDate.
-6. Fixed naming conventions and add JavaDocs comments for all classes.
-7. Fixed validation problems in all setters for Acquaintances classes.
-8. Resolved singleton design pattern concurrency issue.
-9. Implemented iterator design pattern in building table data.
-10. Implemented facade design pattern in checkers.
-11. Implemented abstract factory design pattern in creating abstract class acquaintances.
-12. Implemented form process strategy via strategy design pattern.
-13. Implemented singleton design pattern for the strategies.
-14. Implemented UI for the annoying field set by the original author.
+1. Fixed NotSerializableException due to Annoy and CantAnnoy classes.
+2. Converted all static variables that are unneeded to local variables.
+3. Deleted unused classes.
+4. Renamed DateChecker validDate to validateDate.
+5. Fixed naming conventions and add JavaDocs comments for all classes.
+6. Fixed validation problems in all setters for Acquaintances classes.
+7. Resolved singleton design pattern concurrency issue.
+8. Implemented iterator design pattern in building table data.
+9. Implemented facade design pattern in checkers.
+10. Implemented abstract factory design pattern in creating abstract class acquaintances.
+11. Implemented form process strategy via strategy design pattern.
+12. Implemented singleton design pattern for the strategies.
+13. Implemented UI for the annoying field set by the original author.
