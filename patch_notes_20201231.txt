@@ -9,4 +9,5 @@
 9. Implemented iterator design pattern in building table data.
 10. Implemented facade design pattern in checkers.
 11. Implemented abstract factory design pattern in creating abstract class acquaintances.
-12.
+12. Implemented form process strategy via strategy design pattern.
+13. Implemented singleton design pattern for the strategies.

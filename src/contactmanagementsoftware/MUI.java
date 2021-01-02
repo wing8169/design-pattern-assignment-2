@@ -12,8 +12,7 @@ import java.util.ArrayList;
  */
 public class MUI extends javax.swing.JFrame implements AcquaintanceIterator {
 
-    private Factory acquaintancesFactory;
-    private TextChecker textChecker;
+    private FormProcessStrategy strategy;
     private ArrayList<ArrayList<Acquaintances>> acquaintances;
     private int categoryIndex; // currently selected category's index (only used for add and edit)
     private int arrayListIndex; // currently selected item's index
@@ -23,9 +22,8 @@ public class MUI extends javax.swing.JFrame implements AcquaintanceIterator {
     private static MUI manager; // static instance for singleton design pattern
 
     private MUI() {
-        // initialize checker and factory
-        textChecker = new TextChecker();
-        acquaintancesFactory = new AcquaintanceFactory();
+        // initialize strategy
+        strategy = GeneralFormProcess.getInstance();
         // initialize components
         initComponents();
         // center align frame
@@ -49,7 +47,7 @@ public class MUI extends javax.swing.JFrame implements AcquaintanceIterator {
     }
 
     /**
-     * getIntance gets the MUI instance and creates it if does not exist yet
+     * getInstance gets the MUI instance and creates it if does not exist yet
      *
      * @return MUI instance
      */
@@ -161,7 +159,7 @@ public class MUI extends javax.swing.JFrame implements AcquaintanceIterator {
                 jLabel7.setVisible(true);
                 jLabel8.setVisible(true);
                 jLabel9.setVisible(true);
-                jLabel10.setVisible(true);   
+                jLabel10.setVisible(true);
                 jScrollPane4.setVisible(true);
                 jScrollPane5.setVisible(true);
                 jScrollPane6.setVisible(true);
@@ -219,19 +217,6 @@ public class MUI extends javax.swing.JFrame implements AcquaintanceIterator {
                 break;
             default:
                 break;
-        }
-
-        if (detailsFlag) {
-            name.setEditable(false);
-            mobile.setEditable(false);
-            email.setEditable(false);
-            one.setEditable(false);
-            two.setEditable(false);
-            three.setEditable(false);
-            four.setEditable(false);
-            jButton10.setText("Back to main menu");
-            jButton11.setVisible(false);
-            Operation_Menu.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Display Details", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("DialogInput", 1, 16)));
         }
     }
 
@@ -910,200 +895,28 @@ public class MUI extends javax.swing.JFrame implements AcquaintanceIterator {
 
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
-        detailsFlag = true;
-        String Name = name.getText();
-        if (Name.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Enter a name");
-            return;
-        }
-        String Mobile = mobile.getText();
-        if (!textChecker.validateMobileNo(Mobile)) {
-            JOptionPane.showMessageDialog(this, "Enter a valid mobile number (6-15 digits)");
-            return;
-        }
-        String Email = email.getText();
-        if (!Email.contains("@")) {
-            JOptionPane.showMessageDialog(this, "Enter a valid email");
-            return;
-        }
-        String One, Two, Three, Four;
         switch (categoryIndex) {
             case 0: //perF
-                One = one.getText();
-                if (!textChecker.validateNormalText(One)) {
-                    JOptionPane.showMessageDialog(this, "Enter a valid value ( 1 to 300 chars)");
-                    return;
-                }
-                Two = two.getText();
-                if (!textChecker.validateNormalText(Two)) {
-                    JOptionPane.showMessageDialog(this, "Enter a valid value ( 1 to 300 chars)");
-                    return;
-                }
-                Three = three.getText();
-                if (!textChecker.validateDate(Three)) {
-                    JOptionPane.showMessageDialog(this, "Enter a valid date");
-                    return;
-                }
-                if (!textChecker.validateNormalText(Three)) {
-                    JOptionPane.showMessageDialog(this, "Enter a valid value ( 1 to 300 chars)");
-                    return;
-                }
-                Four = four.getText();
-                 
-                  if (Four.isEmpty() || Four.length() > 1 ) {
-                   JOptionPane.showMessageDialog(this, "Enter Y or N");
-                   return;
-                }if(Four.equalsIgnoreCase("y") || Four.equalsIgnoreCase("n")){
-                    
-                }else{
-                     JOptionPane.showMessageDialog(this, "Enter Y or N");
-                   return;
-                }
-                PersonalFriends personalF;
-                if (addOrEditFlag) {
-                    personalF = (PersonalFriends) acquaintancesFactory.createAcquaintance("PersonalFriends");
-                } else {
-                    personalF = (PersonalFriends) acquaintances.get(categoryIndex).get(arrayListIndex);
-                }
-                personalF.setName(Name);
-                personalF.setMobileNo(Mobile);
-                personalF.setEmail(Email);
-                personalF.setEvents(One);
-                personalF.setAContext(Two);
-                personalF.setADate(Three);
-                personalF.setAnnoyingAbility(Four);
-                System.out.println(personalF.tryToAnnoy());
-                if (addOrEditFlag) {
-                    acquaintances.get(categoryIndex).add(personalF);
-                }
+                strategy = PersonalFormProcess.getInstance();
                 break;
             case 1: //rel
-                One = one.getText();
-                if (!textChecker.validateNormalText(One)) {
-                    JOptionPane.showMessageDialog(this, "Enter a valid value ( 1 to 300 chars)");
-                    return;
-                }
-                if (!textChecker.validateDate(One)) {
-                    JOptionPane.showMessageDialog(this, "Enter a valid date");
-                    return;
-                }
-                Two = two.getText();
-                if (!textChecker.validateNormalText(Two)) {
-                    JOptionPane.showMessageDialog(this, "Enter a valid value ( 1 to 300 chars)");
-                    return;
-                }
-                if (!textChecker.validateDate(Two)) {
-                    return;
-                }
-               Four = four.getText();
-                 
-                  if (Four.isEmpty() || Four.length() > 1 ) {
-                   JOptionPane.showMessageDialog(this, "Enter Y or N");
-                   return;
-                }if(Four.equalsIgnoreCase("y") || Four.equalsIgnoreCase("n")){
-                    
-                }else{
-                     JOptionPane.showMessageDialog(this, "Enter Y or N");
-                   return;
-                }
-                Relatives rel;
-                if (addOrEditFlag) {
-                    rel = (Relatives) acquaintancesFactory.createAcquaintance("Relatives");
-                } else {
-                    rel = (Relatives) acquaintances.get(categoryIndex).get(arrayListIndex);
-                }
-                rel.setName(Name);
-                rel.setMobileNo(Mobile);
-                rel.setEmail(Email);
-                rel.setBDate(One);
-                rel.setLDate(Two);
-                rel.setAnnoyingAbility(Four);
-                System.out.println(rel.tryToAnnoy());
-                if (addOrEditFlag) {
-                    acquaintances.get(categoryIndex).add(rel);
-                }
+                strategy = RelativeFormProcess.getInstance();
                 break;
             case 2: //proF
-                One = one.getText();
-                if (!textChecker.validateNormalText(One)) {
-                    JOptionPane.showMessageDialog(this, "Enter a valid value ( 1 to 300 chars)");
-                    return;
-                }
-                Four = four.getText();
-                 
-                  if (Four.isEmpty() || Four.length() > 1 ) {
-                   JOptionPane.showMessageDialog(this, "Enter Y or N");
-                   return;
-                }if(Four.equalsIgnoreCase("y") || Four.equalsIgnoreCase("n")){
-                    
-                }else{
-                     JOptionPane.showMessageDialog(this, "Enter Y or N");
-                   return;
-                }
-                ProfessionalFriends proF;
-                if (addOrEditFlag) {
-                    proF = (ProfessionalFriends) acquaintancesFactory.createAcquaintance("ProfessionalFriends");
-                } else {
-                    proF = (ProfessionalFriends) acquaintances.get(categoryIndex).get(arrayListIndex);
-                }
-                proF.setName(Name);
-                proF.setMobileNo(Mobile);
-                proF.setEmail(Email);
-                proF.setCommonInterests(One);
-                proF.setAnnoyingAbility(Four);
-                System.out.println(proF.tryToAnnoy());
-                if (addOrEditFlag) {
-                    acquaintances.get(categoryIndex).add(proF);
-                }
+                strategy = ProfessionalFormProcess.getInstance();
                 break;
             case 3: //ca
-                One = one.getText();
-                if (!textChecker.validateNormalText(One)) {
-                    JOptionPane.showMessageDialog(this, "Enter a valid value ( 1 to 300 chars)");
-                    return;
-                }
-                Two = two.getText();
-                if (!textChecker.validateNormalText(Two)) {
-                    JOptionPane.showMessageDialog(this, "Enter a valid value ( 1 to 300 chars)");
-                    return;
-                }
-                Three = three.getText();
-                if (!textChecker.validateNormalText(Three)) {
-                    JOptionPane.showMessageDialog(this, "Enter a valid value ( 1 to 300 chars)");
-                    return;
-                }
-                Four = four.getText();
-                 
-                  if (Four.isEmpty() || Four.length() > 1 ) {
-                   JOptionPane.showMessageDialog(this, "Enter Y or N");
-                   return;
-                }if(Four.equalsIgnoreCase("y") || Four.equalsIgnoreCase("n")){
-                    
-                }else{
-                     JOptionPane.showMessageDialog(this, "Enter Y or N");
-                   return;
-                }
-                CasualAcquaintances ca;
-                if (addOrEditFlag) {
-                    ca = (CasualAcquaintances) acquaintancesFactory.createAcquaintance("CasualAcquaintances");
-                } else {
-                    ca = (CasualAcquaintances) acquaintances.get(categoryIndex).get(arrayListIndex);
-                }
-                ca.setName(Name);
-                ca.setMobileNo(Mobile);
-                ca.setEmail(Email);
-                ca.setWhenWhere(One);
-                ca.setCircumstances(Two);
-                ca.setOtherInfo(Three);
-                ca.setAnnoyingAbility(Four);
-                System.out.println(ca.tryToAnnoy());
-                if (addOrEditFlag) {
-                    acquaintances.get(categoryIndex).add(ca);
-                }
+                strategy = CasualFormProcess.getInstance();
                 break;
             default:
+                strategy = GeneralFormProcess.getInstance();
                 break;
         }
+        detailsFlag = true;
+        // validate form using the strategy set
+        boolean valid = strategy.validateFormData(this, name, mobile, email, one, two, three, acquaintances,
+                categoryIndex, arrayListIndex, addOrEditFlag);
+        if (!valid) return;
         Main_Menu.setVisible(true);
         Operation_Menu.setVisible(false);
         this.setUpTableData();
@@ -1113,41 +926,6 @@ public class MUI extends javax.swing.JFrame implements AcquaintanceIterator {
         Main_Menu.setVisible(true);
         Operation_Menu.setVisible(false);
     }//GEN-LAST:event_jButton11ActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new MUI().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Display_Details;
