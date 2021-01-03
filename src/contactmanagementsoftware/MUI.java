@@ -92,8 +92,10 @@ public class MUI extends javax.swing.JFrame implements AcquaintanceIterator {
             one.setEditable(false);
             two.setEditable(false);
             three.setEditable(false);
-            jButton10.setText("Back to main menu");
-            jButton11.setVisible(false);
+            four.setEditable(false);
+            jButton10.setVisible(false);
+            jButton11.setVisible(true);
+            jButton11.setText("Back to main menu");
             Operation_Menu.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Display Details", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("DialogInput", 1, 16)));
         }
 
@@ -702,7 +704,7 @@ public class MUI extends javax.swing.JFrame implements AcquaintanceIterator {
         Display_Details.setVisible(true);
         searchString = s;
         details.setContentType("text/html");
-        runn();
+        run();
     }//GEN-LAST:event_searchContactActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
@@ -753,7 +755,7 @@ public class MUI extends javax.swing.JFrame implements AcquaintanceIterator {
         setDescription();
     }//GEN-LAST:event_detailOfContactActionPerformed
 
-    public void runn() {
+    public void run() {
         String s = "<html> <b>Search results:</b><br>Found!<br><br>Acquaintance Details: <br>";
         int j = 0;
         for (int i = 0; i < acquaintances.get(0).size(); i++) {
