@@ -81,12 +81,7 @@ public abstract class Acquaintances implements Serializable {
      * @param newAnnoyType annoy behavior
      */
     public void setAnnoyingAbility(String newAnnoyType) {
-        if (newAnnoyType.equalsIgnoreCase("n")) {
-            annoyType = new CantAnnoy();
-        }
-        if (newAnnoyType.equalsIgnoreCase("y")) {
-            annoyType = new CanAnnoy();
-        }
+        annoyType = newAnnoyType.equalsIgnoreCase("n") ? new CantAnnoy() : new CanAnnoy();
     }
 
 }
